@@ -21,8 +21,6 @@ public class Livro {
     @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     private int paginas; //numero de paginas
-    @OneToMany(mappedBy = "livro")
-    private List<Personagens> personagens;
 
     public Livro(){}
 
@@ -82,14 +80,6 @@ public class Livro {
         this.statusVisto = statusVisto;
     }
 
-    public List<Personagens> getPersonagens() {
-        return personagens;
-    }
-
-    public void setPersonagens(List<Personagens> personagens) {
-        this.personagens = personagens;
-    }
-
     public int getPaginas() {
         return paginas;
     }
@@ -107,7 +97,6 @@ public class Livro {
                 ", autor='" + autor + '\'' +
                 ", mesAno=" + mesAno +  '\'' +
                 ", statusVisto='" + statusVisto + '\'' +
-                ", personagens=" + personagens + '\'' +
                 ", paginas=" + paginas + '\'' +
                 '}';
     }

@@ -24,8 +24,6 @@ public class Filme {
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     @Column(name = "duracaomin")
     private int duracao;
-    @OneToMany(mappedBy = "filme")
-    private List<Personagens> personagens;
 
     public Filme(){}
 
@@ -96,14 +94,6 @@ public class Filme {
 
     public void setStatusVisto(String statusVisto) {
         this.statusVisto = statusVisto;
-    }
-
-    public List<Personagens> getPersonagens() {
-        return personagens;
-    }
-
-    public void setPersonagens(List<Personagens> personagens) {
-        this.personagens = personagens;
     }
 
     public int getDuracao() {

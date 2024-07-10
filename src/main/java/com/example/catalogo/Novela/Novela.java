@@ -23,8 +23,6 @@ public class Novela {
     private Date mesAno; //data lancamento
     private int maxEps;
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
-    @OneToMany(mappedBy = "novela")
-    private List<Personagens> personagens;
 
     public Novela(){}
 
@@ -117,13 +115,6 @@ public class Novela {
     public void setStatusVisto(String statusVisto) {
         this.statusVisto = statusVisto;
     }
-    public List<Personagens> getPersonagens() {
-        return personagens;
-    }
-
-    public void setPersonagens(List<Personagens> personagens) {
-        this.personagens = personagens;
-    }
 
     @Override
     public String toString() {
@@ -138,7 +129,6 @@ public class Novela {
                 ", mesAno=" + mesAno + '\'' +
                 ", maxEps=" + maxEps + '\'' +
                 ", statusVisto='" + statusVisto + '\'' +
-                ", personagens=" + personagens + '\'' +
                 ", maxEps=" + maxEps + '\'' +
                 ", statusVisto='" + statusVisto + '\'' +
                 '}';

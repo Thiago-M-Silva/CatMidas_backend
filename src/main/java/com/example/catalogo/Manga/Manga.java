@@ -24,8 +24,6 @@ public class Manga {
     @Column(name = "statusvisto")
     private String statusLido; //se o usuario esta lendo ou ñ ou se pretende ler
     private String nacionalidade; //manga funcionara para qualquer quadrinho
-    @OneToMany(mappedBy = "manga")
-    private List<Personagens> personagens;
 
     public Manga(){}
 
@@ -102,14 +100,6 @@ public class Manga {
     public void setMesAno(Date mesAno) {
         this.mesAno = mesAno;
     }
-
-    public List<Personagens> getPersonagens() {
-        return personagens;
-    }
-
-    public void setPersonagens(List<Personagens> personagens) {
-        this.personagens = personagens;
-    }
     public int getQtdCaps() {
         return qtdCaps;
     }
@@ -127,7 +117,6 @@ public class Manga {
                 ", autor='" + autor + '\'' +
                 ", status='" + status + '\'' +
                 ", mesAno=" + mesAno + '\'' +
-                ", personagens=" + personagens + '\'' +
                 ", qtdCaps=" + qtdCaps + '\'' +
                 ", status='" + status + '\'' +
                 ", statusLido='" + statusLido + '\'' +

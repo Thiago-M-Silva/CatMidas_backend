@@ -28,9 +28,7 @@ public class Desenho {
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     private String nacionalidade;
     //private List categorias;
-    @OneToMany(mappedBy = "desenho")
-    private List<Personagens> personagens;
-
+   
     public Desenho(){}
 
     public Desenho(DesenhoRequestDTO data) {
@@ -141,13 +139,7 @@ public class Desenho {
         this.nacionalidade = nacionalidade;
     }
 
-    public List<Personagens> getPersonagens() {
-        return personagens;
-    }
-
-    public void setPersonagens(List<Personagens> personagens) {
-        this.personagens = personagens;
-    }
+  
     @Override
     public String toString() {
         return "Anime{" +
@@ -162,7 +154,6 @@ public class Desenho {
                 ", temps=" + temps + '\'' +
                 ", maxEps=" + maxEps + '\'' +
                 ", statusVisto='" + statusVisto + '\'' +
-                ", personagens=" + personagens + '\'' +
                 '}';
     }
 }

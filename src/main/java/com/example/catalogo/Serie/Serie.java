@@ -27,8 +27,6 @@ public class Serie {
     private int maxEps;
     @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
-    @OneToMany(mappedBy = "serie")
-    private List<Personagens> personagens;
 
     public Serie(){}
 
@@ -132,14 +130,6 @@ public class Serie {
         this.statusVisto = statusVisto;
     }
 
-    public List<Personagens> getPersonagens() {
-        return personagens;
-    }
-
-    public void setPersonagens(List<Personagens> personagens) {
-        this.personagens = personagens;
-    }
-
     @Override
     public String toString() {
         return "Serie{" +
@@ -153,8 +143,7 @@ public class Serie {
                 ", mesAno=" + mesAno +
                 ", temps=" + temps +
                 ", maxEps=" + maxEps +
-                ", statusVisto='" + statusVisto + '\'' +
-                ", personagens=" + personagens +
+                ", statusVisto='" + statusVisto +
                 '}';
     }
 }
