@@ -27,6 +27,10 @@ services:
     networks:
       - catmidas-bd
 
+networks:
+  catmidas-bd: 
+    driver: bridge 
+
 volumes:
   postgres-data:
     driver: local
