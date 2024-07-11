@@ -30,4 +30,8 @@ class AnimeControllerTest {
     @Test
     void updateAnime() {
     }
+
+    private desenho createDesenho(Anime anime){
+        //min 17:29
+    }
 }
