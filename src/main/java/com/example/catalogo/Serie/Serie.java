@@ -1,11 +1,9 @@
 package com.example.catalogo.Serie;
 
 
-import com.example.catalogo.Personagens;
 import jakarta.persistence.*;
 
 import java.sql.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "serie")

@@ -1,10 +1,8 @@
 package com.example.catalogo.Desenho;
 
-import com.example.catalogo.Personagens;
 import jakarta.persistence.*;
 
 import java.sql.Date;
-import java.util.List;
 
 @Table(name = "desenho")
 @Entity

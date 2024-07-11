@@ -1,10 +1,8 @@
 package com.example.catalogo.Filme;
 
-import com.example.catalogo.Personagens;
 import jakarta.persistence.*;
 
 import java.sql.Date;
-import java.util.List;
 @Entity
 @Table(name = "filme")
 public class Filme {
@@ -114,7 +112,6 @@ public class Filme {
                 ", disponibilidade='" + disponibilidade + '\'' +
                 ", mesAno=" + mesAno + '\'' +
                 ", statusVisto='" + statusVisto + '\'' +
-                ", personagens=" + personagens + '\'' +
                 ", duracao=" + duracao + '\'' +
                 '}';
     }

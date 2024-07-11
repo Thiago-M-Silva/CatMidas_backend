@@ -1,4 +1,4 @@
-# Dockerfile for Java Spring application with PostgreSQL database
+#Dockerfile for Java Spring application with PostgreSQL database
 
 # Use an OpenJDK runtime as base image
 FROM openjdk:17-jdk-slim
