@@ -1,9 +1,9 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Jogos.Jogos;
-import com.example.catalogo.Jogos.JogosRepository;
-import com.example.catalogo.Jogos.JogosRequestDTO;
-import com.example.catalogo.Jogos.JogosResponseDTO;
+import com.example.catalogo.Model.Jogos.Jogos;
+import com.example.catalogo.Model.Jogos.JogosRepository;
+import com.example.catalogo.Model.Jogos.JogosRequestDTO;
+import com.example.catalogo.Model.Jogos.JogosResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

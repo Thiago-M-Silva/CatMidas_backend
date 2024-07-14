@@ -1,12 +1,9 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Novela.Novela;
-import com.example.catalogo.Filme.Filme;
-import com.example.catalogo.Filme.FilmeRequestDTO;
-import com.example.catalogo.Novela.NovelaRepository;
-import com.example.catalogo.Novela.NovelaRequestDTO;
-import com.example.catalogo.Novela.NovelaResponseDTO;
-import com.example.catalogo.Novela.Novela;
+import com.example.catalogo.Model.Novela.Novela;
+import com.example.catalogo.Model.Novela.NovelaRepository;
+import com.example.catalogo.Model.Novela.NovelaRequestDTO;
+import com.example.catalogo.Model.Novela.NovelaResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

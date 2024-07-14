@@ -1,9 +1,9 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Usuario.Usuario;
-import com.example.catalogo.Usuario.UsuarioRepository;
-import com.example.catalogo.Usuario.UsuarioRequestDTO;
-import com.example.catalogo.Usuario.UsuarioResponseDTO;
+import com.example.catalogo.Model.Usuario.Usuario;
+import com.example.catalogo.Model.Usuario.UsuarioRepository;
+import com.example.catalogo.Model.Usuario.UsuarioRequestDTO;
+import com.example.catalogo.Model.Usuario.UsuarioResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

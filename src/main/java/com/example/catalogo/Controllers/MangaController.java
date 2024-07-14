@@ -1,11 +1,9 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Filme.Filme;
-import com.example.catalogo.Filme.FilmeRequestDTO;
-import com.example.catalogo.Manga.MangaRepository;
-import com.example.catalogo.Manga.MangaRequestDTO;
-import com.example.catalogo.Manga.MangaResponseDTO;
-import com.example.catalogo.Manga.Manga;
+import com.example.catalogo.Model.Manga.MangaRepository;
+import com.example.catalogo.Model.Manga.MangaRequestDTO;
+import com.example.catalogo.Model.Manga.MangaResponseDTO;
+import com.example.catalogo.Model.Manga.Manga;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

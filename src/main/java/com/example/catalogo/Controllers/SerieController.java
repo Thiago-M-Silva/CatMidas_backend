@@ -1,9 +1,9 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Serie.Serie;
-import com.example.catalogo.Serie.SerieRepository;
-import com.example.catalogo.Serie.SerieRequestDTO;
-import com.example.catalogo.Serie.SerieResponseDTO;
+import com.example.catalogo.Model.Serie.Serie;
+import com.example.catalogo.Model.Serie.SerieRepository;
+import com.example.catalogo.Model.Serie.SerieRequestDTO;
+import com.example.catalogo.Model.Serie.SerieResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

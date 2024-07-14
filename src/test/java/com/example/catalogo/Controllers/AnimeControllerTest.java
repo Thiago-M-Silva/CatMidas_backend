@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.example.catalogo.Desenho.Desenho;
-import com.example.catalogo.Desenho.DesenhoRepository;
-import com.example.catalogo.Desenho.DesenhoRequestDTO;
+import com.example.catalogo.Model.Desenho.Desenho;
+import com.example.catalogo.Model.Desenho.DesenhoRepository;
+import com.example.catalogo.Model.Desenho.DesenhoRequestDTO;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

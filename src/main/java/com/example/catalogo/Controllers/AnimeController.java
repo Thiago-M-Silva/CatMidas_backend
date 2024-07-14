@@ -1,15 +1,13 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Desenho.DesenhoRepository;
-import com.example.catalogo.Desenho.DesenhoRequestDTO;
-import com.example.catalogo.Desenho.DesenhoResponseDTO;
+import com.example.catalogo.Model.Desenho.DesenhoRepository;
+import com.example.catalogo.Model.Desenho.DesenhoRequestDTO;
+import com.example.catalogo.Model.Desenho.DesenhoResponseDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-import com.example.catalogo.Desenho.Desenho;
+import com.example.catalogo.Model.Desenho.Desenho;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

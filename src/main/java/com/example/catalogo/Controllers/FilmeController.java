@@ -1,9 +1,9 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Filme.FilmeRepository;
-import com.example.catalogo.Filme.FilmeRequestDTO;
-import com.example.catalogo.Filme.FilmeResponseDTO;
-import com.example.catalogo.Filme.Filme;
+import com.example.catalogo.Model.Filme.FilmeRepository;
+import com.example.catalogo.Model.Filme.FilmeRequestDTO;
+import com.example.catalogo.Model.Filme.FilmeResponseDTO;
+import com.example.catalogo.Model.Filme.Filme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

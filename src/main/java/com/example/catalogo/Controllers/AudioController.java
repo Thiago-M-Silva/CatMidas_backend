@@ -1,14 +1,13 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Audio.Audio;
-import com.example.catalogo.Audio.AudioRepository;
-import com.example.catalogo.Audio.AudioRequestDTO;
-import com.example.catalogo.Audio.AudioResponseDTO;
+import com.example.catalogo.Model.Audio.Audio;
+import com.example.catalogo.Model.Audio.AudioRepository;
+import com.example.catalogo.Model.Audio.AudioRequestDTO;
+import com.example.catalogo.Model.Audio.AudioResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("audio")

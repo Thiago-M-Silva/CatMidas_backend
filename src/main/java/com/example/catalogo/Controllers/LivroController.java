@@ -1,11 +1,9 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Filme.Filme;
-import com.example.catalogo.Filme.FilmeRequestDTO;
-import com.example.catalogo.Livro.LivroRepository;
-import com.example.catalogo.Livro.LivroRequestDTO;
-import com.example.catalogo.Livro.LivroResponseDTO;
-import com.example.catalogo.Livro.Livro;
+import com.example.catalogo.Model.Livro.LivroRepository;
+import com.example.catalogo.Model.Livro.LivroRequestDTO;
+import com.example.catalogo.Model.Livro.LivroResponseDTO;
+import com.example.catalogo.Model.Livro.Livro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +42,7 @@ public class LivroController {
     public void updateLivro(@PathVariable("id") Long id, @RequestBody LivroRequestDTO data){
         Livro livro = LivroRep.getReferenceById(id);
         livro.setNome(data.nome());
-        livro.setDescrição(data.descricao());
+        livro.setDescricao(data.descricao());
         livro.setAutor(data.autor());
         livro.setStatusVisto(data.statusVisto());
         livro.setPaginas(data.paginas());
