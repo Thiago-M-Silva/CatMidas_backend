@@ -1,10 +1,10 @@
 package com.example.catalogo.Model.Usuario;
 
-public record UsuarioResponseDTO(Long id, String Nome, String tipo, String email, String senha) {
+public record UsuarioResponseDTO(Long id, String Nome, UserRoles userRoles, String email, String senha) {
     public UsuarioResponseDTO(Usuario usuario){
         this(usuario.getId(),
                 usuario.getNome(),
-                usuario.getTipo(),
+                usuario.getRole(),
                 usuario.getEmail(),
                 usuario.getSenha());
     }
