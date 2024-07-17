@@ -34,6 +34,13 @@ public class Usuario implements UserDetails {
         this.senha = data.senha();
     }
 
+    public Usuario(String nome, String email, String senha, UserRoles role){
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.role = role;
+    }
+
     public void adicionarMidia(String tipo){
 
     }

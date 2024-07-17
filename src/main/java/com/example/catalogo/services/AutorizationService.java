@@ -18,5 +18,4 @@ public class AutorizationService implements UserDetailsService{
         return repository.findByLogin(username);
     }
 
-    // 23:39
 }
