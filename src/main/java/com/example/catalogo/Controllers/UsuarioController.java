@@ -1,5 +1,6 @@
 package com.example.catalogo.Controllers;
 
+import com.example.catalogo.Infra.Security.TokenService;
 import com.example.catalogo.Model.Usuario.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class UsuarioController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private TokenService tokenService;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
@@ -53,9 +57,9 @@ public class UsuarioController {
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.senha());
-        var Auth = authenticationManager.authenticate(usernamePassword);
-
-        return ResponseEntity.ok().build();
+        var auth = authenticationManager.authenticate(usernamePassword);
+        var token = tokenService.generateToken((Usuario) auth.getPrincipal());
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
