@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.Base64;
 
 @Table(name = "audio")
 @Entity
@@ -27,6 +28,9 @@ public class Audio {
     private String tipo; //musica, podcast, etc
     @Column(name = "dt_lanc")
     private Date mesAno; //data de lancamento
+    @Lob
+    @Column(name = "imagem")
+    private byte[] imagem;
 
     public Audio(){}
 
@@ -39,6 +43,7 @@ public class Audio {
         this.statusVisto = data.StatusVisto();
         this.duracao = data.duracao();
         this.tipo = data.tipo();
-        //this.mesAno = data.mesAno();
+        this.mesAno = data.mesAno();
+        this.imagem = Base64.getDecoder().decode(data.imagem());
     }
 }

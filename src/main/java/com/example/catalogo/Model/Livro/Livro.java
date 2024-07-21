@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.Base64;
 
 @Entity
 @Table(name = "livro")
@@ -25,6 +26,9 @@ public class Livro {
     @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     private int paginas; //numero de paginas
+    @Lob
+    @Column(name = "imagem")
+    private byte[] imagem;
 
     public Livro(){}
 
@@ -34,5 +38,7 @@ public class Livro {
         this.autor = data.autor();
         this.statusVisto = data.statusVisto();
         this.paginas = data.paginas();
+        this.mesAno = data.mesAno();
+        this.imagem = Base64.getDecoder().decode(data.imagem());
     }
 }

@@ -1,7 +1,10 @@
 package com.example.catalogo.Model.Jogos;
 
+import java.sql.Date;
+import java.util.Base64;
+
 public record JogosResponseDTO(Long id, String nome, String autor, String descricao, String estudio,
-                               String disponibilidade, String StatusVisto, Long duracaoMedia) {
+                               String disponibilidade, String StatusVisto, Long duracaoMedia, Date mesAno, String imagem) {
     public JogosResponseDTO(Jogos jogos){
         this(jogos.getId(),
                 jogos.getNome(),
@@ -10,6 +13,8 @@ public record JogosResponseDTO(Long id, String nome, String autor, String descri
                 jogos.getEstudio(),
                 jogos.getDisponibilidade(),
                 jogos.getStatusVisto(),
-                jogos.getDuracaoMedia());
+                jogos.getDuracaoMedia(),
+                jogos.getMesAno(),
+                Base64.getEncoder().encodeToString(jogos.getImagem()));
     }
 }

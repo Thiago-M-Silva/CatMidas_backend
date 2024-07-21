@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.Base64;
 
 @Table(name = "desenho")
 @Entity
@@ -31,7 +32,9 @@ public class Desenho {
     @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     private String nacionalidade;
-    //private List categorias;
+    @Lob
+    @Column(name = "imagem")
+    private byte[] imagem;
    
     public Desenho(){}
 
@@ -44,6 +47,8 @@ public class Desenho {
         this.disponibilidade = data.disponibilidade();
         this.status = data.status();
         this.statusVisto = data.StatusVisto();
+        this.mesAno = data.mesAno();
+        this.imagem = Base64.getDecoder().decode(data.imagem());
     }
 
 }

@@ -18,7 +18,7 @@ import org.junit.jupiter.api.DisplayName;
 
 @DataJpaTest
 @ActiveProfiles("test")
-class AnimeControllerTest {
+class DesenhoControllerTest {
     /*A ideia e simular o contexto de uso da funcao em questao, no caso do setAll() e necessario criar um registro no banco de dados e 
     chamar a funcao de busca por id (que no caso, o alvo dos testes). Criamos a funcao createDesenho para criar esse registro e usaar 
     a funcao de busca.

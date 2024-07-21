@@ -1,7 +1,10 @@
 package com.example.catalogo.Model.Audio;
 
+import java.sql.Date;
+import java.util.Base64;
+
 public record AudioResponseDTO(Long id, String nome, String autor, String descricao, String estudio,
-                               String disponibilidade, String StatusVisto, Long duracao, String tipo) {
+                               String disponibilidade, String StatusVisto, Long duracao, String tipo, Date mesAno, String imagem) {
 
     public AudioResponseDTO(Audio audio){
         this(audio.getId(),
@@ -12,6 +15,8 @@ public record AudioResponseDTO(Long id, String nome, String autor, String descri
                 audio.getDisponibilidade(),
                 audio.getStatusVisto(),
                 audio.getDuracao(),
-                audio.getTipo());
+                audio.getTipo(),
+                audio.getMesAno(),
+                Base64.getEncoder().encodeToString(audio.getImagem()));
     }
 }

@@ -1,4 +1,4 @@
 package com.example.catalogo.Model.Usuario;
 
-public record RegisterDTO(String nome, String email, String senha, UserRoles role) {
+public record RegisterDTO(String nome, String login, String senha, UserRoles role) {
 }

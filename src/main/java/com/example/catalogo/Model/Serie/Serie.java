@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.Base64;
 
 @Entity
 @Table(name = "serie")
@@ -31,6 +32,9 @@ public class Serie {
     private int maxEps;
     @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
+    @Lob
+    @Column(name = "imagem")
+    private byte[] imagem;
 
     public Serie(){}
 
@@ -44,6 +48,8 @@ public class Serie {
         this.statusVisto = data.statusVisto();
         this.maxEps = data.maxEps();
         this.temps = data.temps();
+        this.mesAno = data.mesAno();
+        this.imagem = Base64.getDecoder().decode(data.imagem());
     }
 
 }

@@ -23,20 +23,21 @@ public class Usuario implements UserDetails {
     private Long id;
     private String nome;
     private UserRoles role;
-    private String email;
+    @Column(name = "email")
+    private String login;
     private String senha;
 
     public Usuario(){}
 
     public Usuario(UsuarioRequestDTO data){
         this.nome = data.nome();
-        this.email = data.email();
+        this.login = data.login();
         this.senha = data.senha();
     }
 
-    public Usuario(String nome, String email, String senha, UserRoles role){
+    public Usuario(String nome, String login, String senha, UserRoles role){
         this.nome = nome;
-        this.email = email;
+        this.login = login;
         this.senha = senha;
         this.role = role;
     }

@@ -4,6 +4,7 @@ import com.example.catalogo.Model.Filme.FilmeRepository;
 import com.example.catalogo.Model.Filme.FilmeRequestDTO;
 import com.example.catalogo.Model.Filme.FilmeResponseDTO;
 import com.example.catalogo.Model.Filme.Filme;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ public class FilmeController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
+    @Operation(summary = "busca todos os filmes armazenados", method = "GET")
     public List<FilmeResponseDTO> getAll(){
         List<FilmeResponseDTO> FilmeList = FilmeRep.findAll().stream().map(FilmeResponseDTO::new).toList();
         return FilmeList;
@@ -25,6 +27,7 @@ public class FilmeController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
+    @Operation(summary = "persiste um filme no banco de dados", method = "POST")
     public void saveFilme(@RequestBody FilmeRequestDTO data){
         Filme FilmeData = new Filme(data);
         FilmeRep.save(FilmeData);
@@ -33,21 +36,17 @@ public class FilmeController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
+    @Operation(summary = "deleta o item selecionado", method = "DELETE")
     public void deleteFilme(@PathVariable("id") Long id){
         FilmeRep.deleteById(id);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
+    @Operation(summary = "atualiza o item selecionado", method = "PUT")
     public void updateFilme(@PathVariable("id") Long id, @RequestBody FilmeRequestDTO data){
-        Filme filme = FilmeRep.getReferenceById(id);
-        filme.setNome(data.nome());
-        filme.setAutor(data.autor());
-        filme.setDescricao(data.descricao());
-        filme.setEstudio(data.estudio());
-        filme.setDisponibilidade(data.disponibilidade());
-        filme.setStatusVisto(data.statusVisto());
-        filme.setDuracao(data.duracao());
-        FilmeRep.save(filme);
+        Filme filmeData = new Filme(data);
+        FilmeRep.deleteById(data.id());
+        FilmeRep.save(filmeData);
     }
 }

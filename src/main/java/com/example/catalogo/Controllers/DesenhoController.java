@@ -16,8 +16,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("desenho") //refatorar a classe anime para desenho
-@Tag(name = "desenho-api")
-public class AnimeController {
+@Tag(name = "desenho-endpoint")
+public class DesenhoController {
 
     @Autowired
     private DesenhoRepository DesenhoRep;
@@ -33,7 +33,7 @@ public class AnimeController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "persiste um novo desenho no banco de dados", method = "POST")
+    @Operation(summary = "persiste um novo item no banco de dados", method = "POST")
     public void saveAnime(@RequestBody DesenhoRequestDTO data){
         Desenho desenhoData = new Desenho(data);
         DesenhoRep.save(desenhoData);
@@ -41,14 +41,14 @@ public class AnimeController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
-    @Operation(summary = "deleta um desenho selecionado", method = "DELETE")
+    @Operation(summary = "deleta o item selecionado", method = "DELETE")
     public void deleteAnime(@PathVariable("id") Long id){
         DesenhoRep.deleteById(id);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
-    @Operation(summary = "atualiza um desenho selecionado", method = "PUT")
+    @Operation(summary = "atualiza o item selecionado", method = "PUT")
     public void updateAnime(@PathVariable("id") Long id, @RequestBody DesenhoRequestDTO data){
         Desenho desenhoData = new Desenho(data);
 

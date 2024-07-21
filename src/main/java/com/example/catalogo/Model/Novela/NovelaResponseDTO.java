@@ -1,8 +1,11 @@
 package com.example.catalogo.Model.Novela;
 
+import java.sql.Date;
+import java.util.Base64;
+
 public record NovelaResponseDTO(Long id, String nome, String descricao, String autor,
                                 String estudio, String status, String disponibilidade,
-                                int maxEps, String statusVisto) {
+                                int maxEps, String statusVisto, Date mesAno, String imagem) {
     public NovelaResponseDTO(Novela novela){
         this(novela.getId(),
                 novela.getNome(),
@@ -12,6 +15,8 @@ public record NovelaResponseDTO(Long id, String nome, String descricao, String a
                 novela.getStatus(),
                 novela.getDisponibilidade(),
                 novela.getMaxEps(),
-                novela.getStatusVisto());
+                novela.getStatusVisto(),
+                novela.getMesAno(),
+                Base64.getEncoder().encodeToString(novela.getImagem()));
     }
 }

@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.Base64;
 
 @Entity
 @Table(name = "novela")
@@ -27,6 +28,9 @@ public class Novela {
     private Date mesAno; //data lancamento
     private int maxEps;
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
+    @Lob
+    @Column(name = "imagem")
+    private byte[] imagem;
 
     public Novela(){}
 
@@ -39,6 +43,8 @@ public class Novela {
         this.status = data.status();
         this.maxEps = data.maxEps();
         this.statusVisto = data.statusVisto();
+        this.mesAno = data.mesAno();
+        this.imagem = Base64.getDecoder().decode(data.imagem());
     }
 
 }

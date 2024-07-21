@@ -4,6 +4,8 @@ import com.example.catalogo.Model.Livro.LivroRepository;
 import com.example.catalogo.Model.Livro.LivroRequestDTO;
 import com.example.catalogo.Model.Livro.LivroResponseDTO;
 import com.example.catalogo.Model.Livro.Livro;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("livro")
+@Tag(name = "livro-endpoint")
 public class LivroController {
 
     @Autowired
@@ -18,6 +21,7 @@ public class LivroController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
+    @Operation(summary = "busca todos os livros armazenados", method = "GET")
     public List<LivroResponseDTO> getAll(){
         List<LivroResponseDTO> LivroList = LivroRep.findAll().stream().map(LivroResponseDTO::new).toList();
         return LivroList;
@@ -25,6 +29,7 @@ public class LivroController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
+    @Operation(summary = "persiste um novo item no banco de dados", method = "POST")
     public void saveLivro(@RequestBody LivroRequestDTO data){
         Livro LivroData = new Livro(data);
         LivroRep.save(LivroData);
@@ -33,19 +38,17 @@ public class LivroController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
+    @Operation(summary = "deleta o item selecionado", method = "DELETE")
     public void deleteLivro(@PathVariable("id") Long id){
         LivroRep.deleteById(id);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
+    @Operation(summary = "atualiza o item selecionado", method = "PUT")
     public void updateLivro(@PathVariable("id") Long id, @RequestBody LivroRequestDTO data){
-        Livro livro = LivroRep.getReferenceById(id);
-        livro.setNome(data.nome());
-        livro.setDescricao(data.descricao());
-        livro.setAutor(data.autor());
-        livro.setStatusVisto(data.statusVisto());
-        livro.setPaginas(data.paginas());
-        LivroRep.save(livro);
+        Livro livroData = new Livro(data);
+        LivroRep.deleteById(data.id());
+        LivroRep.save(livroData);
     }
 }
