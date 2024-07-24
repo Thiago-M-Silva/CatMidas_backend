@@ -1,5 +1,7 @@
 package com.example.catalogo.Controllers;
 
+import com.example.catalogo.Model.Audio.AudioResponseDTO;
+import com.example.catalogo.Model.Desenho.DesenhoResponseDTO;
 import com.example.catalogo.Model.Novela.Novela;
 import com.example.catalogo.Model.Novela.NovelaRepository;
 import com.example.catalogo.Model.Novela.NovelaRequestDTO;
@@ -7,6 +9,7 @@ import com.example.catalogo.Model.Novela.NovelaResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +26,23 @@ public class NovelaController {
     @Operation(summary = "busca todos as novelas armazenados", method = "GET")
     public List<NovelaResponseDTO> getAll(){
         List<NovelaResponseDTO> NovelaList = NovelaRep.findAll().stream().map(NovelaResponseDTO::new).toList();
+        return NovelaList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/fav")
+    @Operation(summary = "busca novelas marcados como favoritos", method = "GET")
+    public List<NovelaResponseDTO> getFav(){
+        List<NovelaResponseDTO> NovelaList = NovelaRep.findNovelaFav().stream().map(NovelaResponseDTO::new).toList();
+        return NovelaList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(path = "/status", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "busca novelas com um determinado status", method = "GET")
+    // @ApiResponses verificar os responses
+    public List<NovelaResponseDTO> setByStatus(@RequestBody String status){
+        List<NovelaResponseDTO> NovelaList = NovelaRep.findNovelaByStatus(status).stream().map(NovelaResponseDTO::new).toList();
         return NovelaList;
     }
 

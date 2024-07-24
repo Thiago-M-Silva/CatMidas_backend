@@ -30,6 +30,7 @@ public class Serie {
     private int temps;
     @Column(name = "maxeps")
     private int maxEps;
+    private Boolean favorito;
     @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     @Lob

@@ -25,6 +25,7 @@ public class Livro {
     private Date mesAno; //data lancamento
     @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
+    private Boolean favorito;
     private int paginas; //numero de paginas
     @Lob
     @Column(name = "imagem")

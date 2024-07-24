@@ -42,18 +42,6 @@ public class Usuario implements UserDetails {
         this.role = role;
     }
 
-    public void adicionarMidia(String tipo){
-
-    }
-
-    public void apagarMidia(String tipo){
-
-    }
-
-    public void compartilhar(String tipo){
-
-    }
-
     public void listaFavoritos(String tipo){
         //teste github
     }

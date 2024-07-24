@@ -4,7 +4,8 @@ import java.sql.Date;
 import java.util.Base64;
 
 public record LivroResponseDTO(Long id, String nome, String descricao, String autor,
-                               String statusVisto, int paginas, Date mesAno, String imagem) {
+                               String statusVisto, int paginas, Date mesAno, Boolean favorito,
+                               String imagem) {
     public LivroResponseDTO(Livro livro){
         this(livro.getId(),
                 livro.getNome(),
@@ -13,6 +14,7 @@ public record LivroResponseDTO(Long id, String nome, String descricao, String au
                 livro.getStatusVisto(),
                 livro.getPaginas(),
                 livro.getMesAno(),
+                livro.getFavorito(),
                 Base64.getEncoder().encodeToString(livro.getImagem()));
     }
 }

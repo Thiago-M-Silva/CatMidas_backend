@@ -1,5 +1,7 @@
 package com.example.catalogo.Controllers;
 
+import com.example.catalogo.Model.Audio.AudioResponseDTO;
+import com.example.catalogo.Model.Desenho.DesenhoResponseDTO;
 import com.example.catalogo.Model.Serie.Serie;
 import com.example.catalogo.Model.Serie.SerieRepository;
 import com.example.catalogo.Model.Serie.SerieRequestDTO;
@@ -7,6 +9,7 @@ import com.example.catalogo.Model.Serie.SerieResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +26,23 @@ public class SerieController {
     @Operation(summary = "busca todos as series armazenados", method = "GET")
     public List<SerieResponseDTO> getAll(){
         List<SerieResponseDTO> SerieList = SerieRep.findAll().stream().map(SerieResponseDTO::new).toList();
+        return SerieList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/fav")
+    @Operation(summary = "busca series marcados como favoritos", method = "GET")
+    public List<SerieResponseDTO> getFav(){
+        List<SerieResponseDTO> SerieList = SerieRep.findSerieFav().stream().map(SerieResponseDTO::new).toList();
+        return SerieList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(path = "/status", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "busca series com um determinado status", method = "GET")
+    // @ApiResponses verificar os responses
+    public List<SerieResponseDTO> setByStatus(@RequestBody String status){
+        List<SerieResponseDTO> SerieList = SerieRep.findSerieByStatus(status).stream().map(SerieResponseDTO::new).toList();
         return SerieList;
     }
 

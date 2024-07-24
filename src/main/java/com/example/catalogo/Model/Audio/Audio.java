@@ -25,6 +25,7 @@ public class Audio {
     private String disponibilidade;
     private String statusVisto;
     private Long duracao;
+    private Boolean favorito; //indica se a midia esta marcada como favorita ou nao
     private String tipo; //musica, podcast, etc
     @Column(name = "dt_lanc")
     private Date mesAno; //data de lancamento

@@ -26,6 +26,7 @@ public class Jogos {
     private String disponibilidade; //onde a midia pode ser econtrada
     @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
+    private Boolean favorito;
     @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     @Lob

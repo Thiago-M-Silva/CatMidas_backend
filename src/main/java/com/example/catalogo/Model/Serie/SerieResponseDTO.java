@@ -5,7 +5,8 @@ import java.util.Base64;
 
 public record SerieResponseDTO(Long id, String nome, String descricao, String autor,
                                String estudio, String status, String disponibilidade,
-                               int temps, int maxEps, String statusVisto, Date mesAno, String imagem) {
+                               int temps, int maxEps, String statusVisto, Date mesAno,
+                               Boolean favorito, String imagem) {
     public SerieResponseDTO(Serie serie){
         this(serie.getId(),
                 serie.getNome(),
@@ -18,6 +19,7 @@ public record SerieResponseDTO(Long id, String nome, String descricao, String au
                 serie.getMaxEps(),
                 serie.getStatusVisto(),
                 serie.getMesAno(),
+                serie.getFavorito(),
                 Base64.getEncoder().encodeToString(serie.getImagem()));
     }
 }

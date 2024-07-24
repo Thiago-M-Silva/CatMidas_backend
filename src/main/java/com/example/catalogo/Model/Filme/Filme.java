@@ -26,6 +26,7 @@ public class Filme {
     private String disponibilidade; //onde a midia pode ser econtrada
     @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
+    private Boolean favorito; //indica se a midia esta marcada como favorita ou nao
     @Column(name = "status_visto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     @Column(name = "duracaomin")

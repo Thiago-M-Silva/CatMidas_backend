@@ -1,4 +1,4 @@
-package com.example.catalogo.Model.Manga;
+package com.example.catalogo.Model.Quadrinho;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.util.Base64;
 @Getter
 @Setter
 @ToString
-public class Manga {
+public class Quadrinho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "manga_id")
@@ -26,16 +26,18 @@ public class Manga {
     private Date mesAno; //data lancamento
     @Column(name = "caps")
     private int qtdCaps;
+    private Boolean favorito; //indica se a midia esta marcada como favorita ou nao
     @Column(name = "statusvisto")
     private String statusLido; //se o usuario esta lendo ou ñ ou se pretende ler
-    private String nacionalidade; //manga funcionara para qualquer quadrinho
+    private String nacionalidade;
+
     @Lob
     @Column(name = "imagem")
     private byte[] imagem;
 
-    public Manga(){}
+    public Quadrinho(){}
 
-    public Manga(MangaRequestDTO data) {
+    public Quadrinho(QuadrinhoRequestDTO data) {
         this.nome = data.nome();
         this.descricao = data.descricao();
         this.autor = data.autor();

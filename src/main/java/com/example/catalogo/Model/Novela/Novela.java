@@ -27,6 +27,7 @@ public class Novela {
     @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
     private int maxEps;
+    private Boolean favorito;
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     @Lob
     @Column(name = "imagem")

@@ -1,11 +1,14 @@
 package com.example.catalogo.Controllers;
 
+import com.example.catalogo.Model.Audio.AudioResponseDTO;
+import com.example.catalogo.Model.Desenho.DesenhoResponseDTO;
 import com.example.catalogo.Model.Filme.FilmeRepository;
 import com.example.catalogo.Model.Filme.FilmeRequestDTO;
 import com.example.catalogo.Model.Filme.FilmeResponseDTO;
 import com.example.catalogo.Model.Filme.Filme;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +25,23 @@ public class FilmeController {
     @Operation(summary = "busca todos os filmes armazenados", method = "GET")
     public List<FilmeResponseDTO> getAll(){
         List<FilmeResponseDTO> FilmeList = FilmeRep.findAll().stream().map(FilmeResponseDTO::new).toList();
+        return FilmeList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/fav")
+    @Operation(summary = "busca filmes marcados como favoritos", method = "GET")
+    public List<FilmeResponseDTO> getFav(){
+        List<FilmeResponseDTO> FilmeList = FilmeRep.findFilmeFav().stream().map(FilmeResponseDTO::new).toList();
+        return FilmeList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(path = "/status", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "busca filmes com um determinado status", method = "GET")
+    // @ApiResponses verificar os responses
+    public List<FilmeResponseDTO> setByStatus(@RequestBody String status){
+        List<FilmeResponseDTO> FilmeList = FilmeRep.findFilmeByStatus(status).stream().map(FilmeResponseDTO::new).toList();
         return FilmeList;
     }
 

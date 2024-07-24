@@ -29,6 +29,7 @@ public class Desenho {
     private int temps;
     @Column(name = "maxeps")
     private int maxEps;
+    private Boolean favorito; //indica se a midia esta marcada como favorita ou nao
     @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     private String nacionalidade;

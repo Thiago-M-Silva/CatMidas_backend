@@ -5,7 +5,8 @@ import java.util.Base64;
 
 public record NovelaResponseDTO(Long id, String nome, String descricao, String autor,
                                 String estudio, String status, String disponibilidade,
-                                int maxEps, String statusVisto, Date mesAno, String imagem) {
+                                int maxEps, String statusVisto, Date mesAno, Boolean favorito,
+                                String imagem) {
     public NovelaResponseDTO(Novela novela){
         this(novela.getId(),
                 novela.getNome(),
@@ -17,6 +18,7 @@ public record NovelaResponseDTO(Long id, String nome, String descricao, String a
                 novela.getMaxEps(),
                 novela.getStatusVisto(),
                 novela.getMesAno(),
+                novela.getFavorito(),
                 Base64.getEncoder().encodeToString(novela.getImagem()));
     }
 }

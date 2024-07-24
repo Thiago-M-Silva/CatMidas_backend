@@ -1,5 +1,6 @@
 package com.example.catalogo.Controllers;
 
+import com.example.catalogo.Model.Audio.AudioResponseDTO;
 import com.example.catalogo.Model.Desenho.DesenhoRepository;
 import com.example.catalogo.Model.Desenho.DesenhoRequestDTO;
 import com.example.catalogo.Model.Desenho.DesenhoResponseDTO;
@@ -28,6 +29,23 @@ public class DesenhoController {
     // @ApiResponses verificar os responses 
     public List<DesenhoResponseDTO> setAll(){
         List<DesenhoResponseDTO> AnimeList = DesenhoRep.findAll().stream().map(DesenhoResponseDTO::new).toList();
+        return AnimeList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/fav")
+    @Operation(summary = "busca desenho marcados como favoritos", method = "GET")
+    public List<DesenhoResponseDTO> getFav(){
+        List<DesenhoResponseDTO> DesenhoList = DesenhoRep.findDesenhoFav().stream().map(DesenhoResponseDTO::new).toList();
+        return DesenhoList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(path = "/status", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "busca desenhos com um determinado status", method = "GET")
+    // @ApiResponses verificar os responses
+    public List<DesenhoResponseDTO> setByStatus(@RequestBody String status){
+        List<DesenhoResponseDTO> AnimeList = DesenhoRep.findDesenhoByStatus(status).stream().map(DesenhoResponseDTO::new).toList();
         return AnimeList;
     }
 

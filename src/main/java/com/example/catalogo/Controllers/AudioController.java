@@ -4,9 +4,11 @@ import com.example.catalogo.Model.Audio.Audio;
 import com.example.catalogo.Model.Audio.AudioRepository;
 import com.example.catalogo.Model.Audio.AudioRequestDTO;
 import com.example.catalogo.Model.Audio.AudioResponseDTO;
+import com.example.catalogo.Model.Desenho.DesenhoResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +26,23 @@ public class AudioController {
     @Operation(summary = "busca todos os audios armazenados", method = "GET")
     public List<AudioResponseDTO> getAll(){
         List<AudioResponseDTO> AudioList = AudioRep.findAll().stream().map(AudioResponseDTO::new).toList();
+        return AudioList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(path = "/status", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "busca audios com um determinado status", method = "GET")
+    // @ApiResponses verificar os responses
+    public List<AudioResponseDTO> setByStatus(@RequestBody String status){
+        List<AudioResponseDTO> AudioList = AudioRep.findAudioByStatus(status).stream().map(AudioResponseDTO::new).toList();
+        return AudioList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/fav")
+    @Operation(summary = "busca audios marcados como favoritos", method = "GET")
+    public List<AudioResponseDTO> getFav(){
+        List<AudioResponseDTO> AudioList = AudioRep.findAudioFav().stream().map(AudioResponseDTO::new).toList();
         return AudioList;
     }
 
