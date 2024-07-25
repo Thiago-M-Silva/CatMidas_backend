@@ -35,7 +35,7 @@ class DesenhoControllerTest {
     @DisplayName("Should return anime from bd")
     void setAll() {
         DesenhoRequestDTO data = new DesenhoRequestDTO(null, "teste", "teste", "teste","teste", 
-                                                            "teste", 0, null, "teste", "a", "teste", 0);
+                                                            "teste", 0, null, "teste", "a", "teste", 0, null, null);
         this.createDesenho(data);
         Optional<Desenho> resultado = this.desenhoRepository.findById(1L);
         assertThat(resultado.isPresent()).isTrue();

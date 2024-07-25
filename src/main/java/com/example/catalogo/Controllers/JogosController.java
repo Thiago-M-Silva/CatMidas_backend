@@ -1,7 +1,5 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Model.Audio.AudioResponseDTO;
-import com.example.catalogo.Model.Desenho.DesenhoResponseDTO;
 import com.example.catalogo.Model.Jogos.Jogos;
 import com.example.catalogo.Model.Jogos.JogosRepository;
 import com.example.catalogo.Model.Jogos.JogosRequestDTO;

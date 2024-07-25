@@ -1,6 +1,5 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Model.Audio.AudioResponseDTO;
 import com.example.catalogo.Model.Desenho.DesenhoRepository;
 import com.example.catalogo.Model.Desenho.DesenhoRequestDTO;
 import com.example.catalogo.Model.Desenho.DesenhoResponseDTO;

@@ -1,6 +1,5 @@
 package com.example.catalogo.Model.Livro;
 
-import com.example.catalogo.Model.Desenho.Desenho;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

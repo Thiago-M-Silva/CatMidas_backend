@@ -4,7 +4,6 @@ import com.example.catalogo.Model.Audio.Audio;
 import com.example.catalogo.Model.Audio.AudioRepository;
 import com.example.catalogo.Model.Audio.AudioRequestDTO;
 import com.example.catalogo.Model.Audio.AudioResponseDTO;
-import com.example.catalogo.Model.Desenho.DesenhoResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
