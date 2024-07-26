@@ -4,12 +4,15 @@ import com.example.catalogo.Model.Novela.Novela;
 import com.example.catalogo.Model.Novela.NovelaRepository;
 import com.example.catalogo.Model.Novela.NovelaRequestDTO;
 import com.example.catalogo.Model.Novela.NovelaResponseDTO;
+import com.example.catalogo.services.DocumentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -19,6 +22,10 @@ public class NovelaController {
 
     @Autowired
     private NovelaRepository NovelaRep;
+
+    @Autowired
+    private DocumentService documentService;
+
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     @Operation(summary = "busca todos as novelas armazenados", method = "GET")
@@ -42,6 +49,22 @@ public class NovelaController {
     public List<NovelaResponseDTO> setByStatus(@RequestBody String status){
         List<NovelaResponseDTO> NovelaList = NovelaRep.findNovelaByStatus(status).stream().map(NovelaResponseDTO::new).toList();
         return NovelaList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(value = "/pdf", produces = "application/pdf")
+    @Operation(summary = "Generate a list of media marked as favorite", method = "GET")
+    public void getDoc(HttpServletResponse response) {
+        List<NovelaResponseDTO> novelaList = NovelaRep.findNovelaFav().stream().map(NovelaResponseDTO::new).toList();
+        byte[] pdfContent = documentService.gerarPdfNovela(novelaList);
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=favorites.pdf");
+        try {
+            response.getOutputStream().write(pdfContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")

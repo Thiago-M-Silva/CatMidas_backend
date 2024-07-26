@@ -4,12 +4,15 @@ import com.example.catalogo.Model.Serie.Serie;
 import com.example.catalogo.Model.Serie.SerieRepository;
 import com.example.catalogo.Model.Serie.SerieRequestDTO;
 import com.example.catalogo.Model.Serie.SerieResponseDTO;
+import com.example.catalogo.services.DocumentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -19,6 +22,10 @@ public class SerieController {
 
     @Autowired
     private SerieRepository SerieRep;
+
+    @Autowired
+    private DocumentService documentService;
+
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     @Operation(summary = "busca todos as series armazenados", method = "GET")
@@ -42,6 +49,22 @@ public class SerieController {
     public List<SerieResponseDTO> setByStatus(@RequestBody String status){
         List<SerieResponseDTO> SerieList = SerieRep.findSerieByStatus(status).stream().map(SerieResponseDTO::new).toList();
         return SerieList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(value = "/pdf", produces = "application/pdf")
+    @Operation(summary = "Generate a list of media marked as favorite", method = "GET")
+    public void getDoc(HttpServletResponse response) {
+        List<SerieResponseDTO> serieList = SerieRep.findSerieFav().stream().map(SerieResponseDTO::new).toList();
+        byte[] pdfContent = documentService.gerarPdfSerie(serieList);
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=favorites.pdf");
+        try {
+            response.getOutputStream().write(pdfContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")

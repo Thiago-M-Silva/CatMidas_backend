@@ -4,12 +4,15 @@ import com.example.catalogo.Model.Livro.LivroRepository;
 import com.example.catalogo.Model.Livro.LivroRequestDTO;
 import com.example.catalogo.Model.Livro.LivroResponseDTO;
 import com.example.catalogo.Model.Livro.Livro;
+import com.example.catalogo.services.DocumentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -19,6 +22,9 @@ public class LivroController {
 
     @Autowired
     private LivroRepository LivroRep;
+
+    @Autowired
+    private DocumentService documentService;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
@@ -43,6 +49,22 @@ public class LivroController {
     public List<LivroResponseDTO> setByStatus(@RequestBody String status){
         List<LivroResponseDTO> LivroList = LivroRep.findLivroByStatus(status).stream().map(LivroResponseDTO::new).toList();
         return LivroList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(value = "/pdf", produces = "application/pdf")
+    @Operation(summary = "Generate a list of media marked as favorite", method = "GET")
+    public void getDoc(HttpServletResponse response) {
+        List<LivroResponseDTO> livroList = LivroRep.findLivroFav().stream().map(LivroResponseDTO::new).toList();
+        byte[] pdfContent = documentService.gerarPdfLivro(livroList);
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=favorites.pdf");
+        try {
+            response.getOutputStream().write(pdfContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")

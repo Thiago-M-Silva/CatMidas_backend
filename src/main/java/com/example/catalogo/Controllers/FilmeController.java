@@ -4,11 +4,14 @@ import com.example.catalogo.Model.Filme.FilmeRepository;
 import com.example.catalogo.Model.Filme.FilmeRequestDTO;
 import com.example.catalogo.Model.Filme.FilmeResponseDTO;
 import com.example.catalogo.Model.Filme.Filme;
+import com.example.catalogo.services.DocumentService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -17,6 +20,9 @@ public class FilmeController {
 
     @Autowired
     private FilmeRepository FilmeRep;
+
+    @Autowired
+    private DocumentService documentService;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
@@ -41,6 +47,22 @@ public class FilmeController {
     public List<FilmeResponseDTO> setByStatus(@RequestBody String status){
         List<FilmeResponseDTO> FilmeList = FilmeRep.findFilmeByStatus(status).stream().map(FilmeResponseDTO::new).toList();
         return FilmeList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(value = "/pdf", produces = "application/pdf")
+    @Operation(summary = "Generate a list of media marked as favorite", method = "GET")
+    public void getDoc(HttpServletResponse response) {
+        List<FilmeResponseDTO> filmeList = FilmeRep.findFilmeFav().stream().map(FilmeResponseDTO::new).toList();
+        byte[] pdfContent = documentService.gerarPdfFilme(filmeList);
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=favorites.pdf");
+        try {
+            response.getOutputStream().write(pdfContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")

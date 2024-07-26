@@ -4,12 +4,16 @@ import com.example.catalogo.Model.Audio.Audio;
 import com.example.catalogo.Model.Audio.AudioRepository;
 import com.example.catalogo.Model.Audio.AudioRequestDTO;
 import com.example.catalogo.Model.Audio.AudioResponseDTO;
+import com.example.catalogo.services.DocumentService;
+import com.itextpdf.text.Document;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -19,6 +23,9 @@ public class AudioController {
 
     @Autowired
     private AudioRepository AudioRep;
+
+    @Autowired
+    private DocumentService documentService;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
@@ -43,6 +50,22 @@ public class AudioController {
     public List<AudioResponseDTO> getFav(){
         List<AudioResponseDTO> AudioList = AudioRep.findAudioFav().stream().map(AudioResponseDTO::new).toList();
         return AudioList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(value = "/pdf", produces = "application/pdf")
+    @Operation(summary = "Generate a list of media marked as favorite", method = "GET")
+    public void getDoc(HttpServletResponse response) {
+        List<AudioResponseDTO> audioList = AudioRep.findAudioFav().stream().map(AudioResponseDTO::new).toList();
+        byte[] pdfContent = documentService.gerarPdfAudio(audioList);
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=favorites.pdf");
+        try {
+            response.getOutputStream().write(pdfContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")

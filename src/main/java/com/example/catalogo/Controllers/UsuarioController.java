@@ -30,7 +30,7 @@ public class UsuarioController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     @Operation(summary = "busca todos os usuarios armazenados", method = "GET")
-    public List<UsuarioResponseDTO> getAll(){
+    public List<UsuarioResponseDTO> getAll() {
         List<UsuarioResponseDTO> UserList = UserRep.findAll().stream().map(UsuarioResponseDTO::new).toList();
         return UserList;
     }

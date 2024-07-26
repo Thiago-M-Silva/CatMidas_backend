@@ -4,12 +4,15 @@ import com.example.catalogo.Model.Quadrinho.QuadrinhoRepository;
 import com.example.catalogo.Model.Quadrinho.QuadrinhoRequestDTO;
 import com.example.catalogo.Model.Quadrinho.QuadrinhoResponseDTO;
 import com.example.catalogo.Model.Quadrinho.Quadrinho;
+import com.example.catalogo.services.DocumentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -19,6 +22,9 @@ public class QuadrinhoController {
 
     @Autowired
     private QuadrinhoRepository QuadrinhoRep;
+
+    @Autowired
+    private DocumentService documentService;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
@@ -43,6 +49,22 @@ public class QuadrinhoController {
     public List<QuadrinhoResponseDTO> setByStatus(@RequestBody String status){
         List<QuadrinhoResponseDTO> MangaList = QuadrinhoRep.findMangaByStatus(status).stream().map(QuadrinhoResponseDTO::new).toList();
         return MangaList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(value = "/pdf", produces = "application/pdf")
+    @Operation(summary = "Generate a list of media marked as favorite", method = "GET")
+    public void getDoc(HttpServletResponse response) {
+        List<QuadrinhoResponseDTO> quadrinhoList = QuadrinhoRep.findQuadrinhoFav().stream().map(QuadrinhoResponseDTO::new).toList();
+        byte[] pdfContent = documentService.gerarPdfQuadrinho(quadrinhoList);
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=favorites.pdf");
+        try {
+            response.getOutputStream().write(pdfContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")

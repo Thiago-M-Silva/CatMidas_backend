@@ -4,14 +4,17 @@ import com.example.catalogo.Model.Desenho.DesenhoRepository;
 import com.example.catalogo.Model.Desenho.DesenhoRequestDTO;
 import com.example.catalogo.Model.Desenho.DesenhoResponseDTO;
 
+import com.example.catalogo.services.DocumentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import com.example.catalogo.Model.Desenho.Desenho;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -21,6 +24,9 @@ public class DesenhoController {
 
     @Autowired
     private DesenhoRepository DesenhoRep;
+
+    @Autowired
+    private DocumentService documentService;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
@@ -46,6 +52,22 @@ public class DesenhoController {
     public List<DesenhoResponseDTO> setByStatus(@RequestBody String status){
         List<DesenhoResponseDTO> AnimeList = DesenhoRep.findDesenhoByStatus(status).stream().map(DesenhoResponseDTO::new).toList();
         return AnimeList;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping(value = "/pdf", produces = "application/pdf")
+    @Operation(summary = "Generate a list of media marked as favorite", method = "GET")
+    public void getDoc(HttpServletResponse response) {
+        List<DesenhoResponseDTO> desenhoList = DesenhoRep.findDesenhoFav().stream().map(DesenhoResponseDTO::new).toList();
+        byte[] pdfContent = documentService.gerarPdfDesenho(desenhoList);
+
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=favorites.pdf");
+        try {
+            response.getOutputStream().write(pdfContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
