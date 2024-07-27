@@ -12,6 +12,7 @@ import com.example.catalogo.Model.Desenho.DesenhoRequestDTO;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
@@ -35,22 +36,32 @@ class DesenhoControllerTest {
     @DisplayName("Should return anime from bd")
     void setAll() {
         DesenhoRequestDTO data = new DesenhoRequestDTO(null, "teste", "teste", "teste","teste", 
-                                                            "teste", 0, null, "teste", "a", "teste", 0, null, null);
+                                                        "teste", 0, null, "teste", "a",
+                                                        "teste", 0, null, null);
         this.createDesenho(data);
         Optional<Desenho> resultado = this.desenhoRepository.findById(1L);
         assertThat(resultado.isPresent()).isTrue();
     }
-
     @Test
-    void saveAnime() {
+    @DisplayName("Should return a list with a least one item")
+    void getFav(){
+        DesenhoRequestDTO data = new DesenhoRequestDTO(null, "teste", "teste", "teste","teste",
+                                                        "teste", 0, null, "teste", "a",
+                                                        "teste", 0, true, "null");
+        this.createDesenho(data);
+        List<Desenho> resultado = this.desenhoRepository.findDesenhoFav();
+        assertThat(resultado.size() > 0).isTrue();
     }
 
     @Test
     void deleteAnime() {
-    }
-
-    @Test
-    void updateAnime() {
+        DesenhoRequestDTO data = new DesenhoRequestDTO(null, "teste", "teste", "teste","teste",
+                "teste", 0, null, "teste", "a",
+                "teste", 0, null, null);
+        this.createDesenho(data);
+        this.desenhoRepository.deleteById(1L);
+        Optional<Desenho> resultado = this.desenhoRepository.findById(1L);
+        assertThat(resultado.isPresent()).isFalse();
     }
 
     private Desenho createDesenho(DesenhoRequestDTO data){
