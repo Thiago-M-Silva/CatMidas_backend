@@ -31,7 +31,7 @@ public class Audio {
     private Date mesAno; //data de lancamento
     @Lob
     @Column(name = "imagem")
-    private byte[] imagem;
+    private String imagem;
 
     public Audio(){}
 
@@ -45,6 +45,7 @@ public class Audio {
         this.duracao = data.duracao();
         this.tipo = data.tipo();
         this.mesAno = data.mesAno();
-        this.imagem = Base64.getDecoder().decode(data.imagem());
+        this.imagem = data.imagem();
+        this.favorito = data.favorito();
     }
 }

@@ -33,7 +33,7 @@ public class Filme {
     private int duracao;
     @Lob
     @Column(name = "imagem")
-    private byte[] imagem;
+    private String imagem;
 
     public Filme(){}
 
@@ -46,7 +46,7 @@ public class Filme {
         this.statusVisto = data.statusVisto();
         this.duracao = data.duracao();
         this.mesAno = data.mesAno();
-        this.imagem = Base64.getDecoder().decode(data.imagem());
+        this.imagem = data.imagem();
     }
 
 }

@@ -17,6 +17,6 @@ public record JogosResponseDTO(Long id, String nome, String autor, String descri
                 jogos.getDuracaoMedia(),
                 jogos.getMesAno(),
                 jogos.getFavorito(),
-                Base64.getEncoder().encodeToString(jogos.getImagem()));
+                jogos.getImagem());
     }
 }

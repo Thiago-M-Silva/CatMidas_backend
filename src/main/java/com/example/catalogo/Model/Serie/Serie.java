@@ -35,7 +35,7 @@ public class Serie {
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     @Lob
     @Column(name = "imagem")
-    private byte[] imagem;
+    private String imagem;
 
     public Serie(){}
 
@@ -50,7 +50,7 @@ public class Serie {
         this.maxEps = data.maxEps();
         this.temps = data.temps();
         this.mesAno = data.mesAno();
-        this.imagem = Base64.getDecoder().decode(data.imagem());
+        this.imagem = data.imagem();
     }
 
 }

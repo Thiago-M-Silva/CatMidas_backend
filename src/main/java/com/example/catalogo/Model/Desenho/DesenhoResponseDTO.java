@@ -21,6 +21,6 @@ public record DesenhoResponseDTO(Long id, String nome, String autor, String desc
                 desenho.getStatusVisto(),
                 desenho.getTemps(),
                 desenho.getFavorito(),
-                Base64.getEncoder().encodeToString(desenho.getImagem()));
+                desenho.getImagem());
     }
 }

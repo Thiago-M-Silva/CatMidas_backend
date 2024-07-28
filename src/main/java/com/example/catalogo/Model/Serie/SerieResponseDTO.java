@@ -20,6 +20,6 @@ public record SerieResponseDTO(Long id, String nome, String descricao, String au
                 serie.getStatusVisto(),
                 serie.getMesAno(),
                 serie.getFavorito(),
-                Base64.getEncoder().encodeToString(serie.getImagem()));
+                serie.getImagem());
     }
 }

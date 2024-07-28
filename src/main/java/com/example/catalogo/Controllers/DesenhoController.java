@@ -7,6 +7,7 @@ import com.example.catalogo.Model.Desenho.DesenhoResponseDTO;
 import com.example.catalogo.services.DocumentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import com.example.catalogo.Model.Desenho.Desenho;
@@ -32,7 +33,9 @@ public class DesenhoController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     @Operation(summary = "busca todos os desenhos armazenados", method = "GET")
-    @ApiResponse
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operacao bem sucedida"),
+    })
     public List<DesenhoResponseDTO> setAll(){
         List<DesenhoResponseDTO> AnimeList = DesenhoRep.findAll().stream().map(DesenhoResponseDTO::new).toList();
         return AnimeList;

@@ -19,6 +19,6 @@ public record NovelaResponseDTO(Long id, String nome, String descricao, String a
                 novela.getStatusVisto(),
                 novela.getMesAno(),
                 novela.getFavorito(),
-                Base64.getEncoder().encodeToString(novela.getImagem()));
+                novela.getImagem());
     }
 }

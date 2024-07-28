@@ -33,7 +33,7 @@ public class Quadrinho {
 
     @Lob
     @Column(name = "imagem")
-    private byte[] imagem;
+    private String imagem;
 
     public Quadrinho(){}
 
@@ -46,7 +46,7 @@ public class Quadrinho {
         this.status = data.status();
         this.statusLido = data.statusLido();
         this.mesAno = data.mesAno();
-        this.imagem = Base64.getDecoder().decode(data.imagem());
+        this.imagem = data.imagem();
     }
 
 }

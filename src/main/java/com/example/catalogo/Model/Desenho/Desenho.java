@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
-import java.util.Base64;
 
 @Table(name = "desenho")
 @Entity
@@ -35,7 +34,7 @@ public class Desenho {
     private String nacionalidade;
     @Lob
     @Column(name = "imagem")
-    private byte[] imagem;
+    private String imagem;
    
     public Desenho(){}
 
@@ -49,7 +48,8 @@ public class Desenho {
         this.status = data.status();
         this.statusVisto = data.StatusVisto();
         this.mesAno = data.mesAno();
-        this.imagem = Base64.getDecoder().decode(data.imagem());
+        this.favorito = data.favorito();
+        this.imagem = data.imagem();
     }
 
 }

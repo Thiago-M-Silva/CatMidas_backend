@@ -15,6 +15,6 @@ public record LivroResponseDTO(Long id, String nome, String descricao, String au
                 livro.getPaginas(),
                 livro.getMesAno(),
                 livro.getFavorito(),
-                Base64.getEncoder().encodeToString(livro.getImagem()));
+                livro.getImagem());
     }
 }

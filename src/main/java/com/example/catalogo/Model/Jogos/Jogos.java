@@ -31,7 +31,7 @@ public class Jogos {
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     @Lob
     @Column(name = "imagem")
-    private byte[] imagem;
+    private String imagem;
 
     public Jogos(){}
 
@@ -43,7 +43,7 @@ public class Jogos {
         this.disponibilidade = data.disponibilidade();
         this.statusVisto = data.StatusVisto();
         this.mesAno = data.mesAno();
-        this.imagem = Base64.getDecoder().decode(data.imagem());
+        this.imagem = data.imagem();
     }
 
 }

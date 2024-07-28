@@ -29,7 +29,7 @@ public class Livro {
     private int paginas; //numero de paginas
     @Lob
     @Column(name = "imagem")
-    private byte[] imagem;
+    private String imagem;
 
     public Livro(){}
 
@@ -40,6 +40,6 @@ public class Livro {
         this.statusVisto = data.statusVisto();
         this.paginas = data.paginas();
         this.mesAno = data.mesAno();
-        this.imagem = Base64.getDecoder().decode(data.imagem());
+        this.imagem = data.imagem();
     }
 }

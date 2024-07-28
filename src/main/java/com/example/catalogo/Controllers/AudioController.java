@@ -55,6 +55,7 @@ public class AudioController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping(value = "/pdf", produces = "application/pdf")
     @Operation(summary = "Generate a list of media marked as favorite", method = "GET")
+
     public void getDoc(HttpServletResponse response) {
         List<AudioResponseDTO> audioList = AudioRep.findAudioFav().stream().map(AudioResponseDTO::new).toList();
         byte[] pdfContent = documentService.gerarPdfAudio(audioList);

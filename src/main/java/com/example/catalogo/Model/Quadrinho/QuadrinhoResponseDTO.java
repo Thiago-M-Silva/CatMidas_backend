@@ -17,6 +17,6 @@ public record QuadrinhoResponseDTO(Long id, String nome, String descricao, Strin
                 quadrinho.getNacionalidade(),
                 quadrinho.getMesAno(),
                 quadrinho.getFavorito(),
-                Base64.getEncoder().encodeToString(quadrinho.getImagem()));
+                quadrinho.getImagem());
     }
 }

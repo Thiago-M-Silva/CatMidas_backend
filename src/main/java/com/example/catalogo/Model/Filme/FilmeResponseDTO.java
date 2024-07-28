@@ -17,6 +17,6 @@ public record FilmeResponseDTO(Long id, String nome, String descricao, String au
                 filme.getDuracao(),
                 filme.getMesAno(),
                 filme.getFavorito(),
-                Base64.getEncoder().encodeToString(filme.getImagem()));
+                filme.getImagem());
     }
 }

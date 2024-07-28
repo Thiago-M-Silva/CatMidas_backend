@@ -19,6 +19,6 @@ public record AudioResponseDTO(Long id, String nome, String autor, String descri
                 audio.getTipo(),
                 audio.getMesAno(),
                 audio.getFavorito(),
-                Base64.getEncoder().encodeToString(audio.getImagem()));
+                audio.getImagem());
     }
 }
