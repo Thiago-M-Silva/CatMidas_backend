@@ -33,3 +33,9 @@ Atualmente o sistema possui endpoints para as seguintes funcionalidades
 * Cadastro e login de usuarios e ADMs
 * CRUD de mídias
 * Emissão arquivo pdf contendo uma lista de mídias marcadas pelo usuário como favorito
+
+#### Imagens
+![image (9)](https://github.com/user-attachments/assets/7adad95d-2bcb-4847-8f53-86db9698bbf5)
+![image (10)](https://github.com/user-attachments/assets/51b28bf5-3941-4e26-8731-72726ff4b198)
+![image (11)](https://github.com/user-attachments/assets/64a96cbf-dca1-4fd1-b90f-44059d8f388b)
+
